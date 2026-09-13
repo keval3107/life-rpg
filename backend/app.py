@@ -14,6 +14,12 @@ from database import get_db, fetch_one, fetch_all, execute, ensure_schema
 from auth import create_token, require_auth
 
 app = Flask(__name__)
+@app.route("/")
+def home():
+    return {
+        "status": "success",
+        "message": "Life RPG API is running!"
+    }
 CORS(app, resources={r"/api/*": {"origins": [FRONTEND_URL, "http://localhost:5173"]}})
 
 ATTRIBUTE_MAP = {
@@ -449,4 +455,5 @@ def buy_reward(rid):
 
 
 if __name__ == "__main__":
+
     app.run(host="0.0.0.0", port=5000, debug=True)
